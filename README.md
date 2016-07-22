@@ -3,7 +3,7 @@ Dies ist ein Skript welches möglich macht, Altis Life Server über #shutdown / 
 
 Bitte Fehler im Skript Melden !
 
-Ihr dürft das Skript auf euren Server verwenden, solange dies nicht kommerziell geschied !
+Ihr dürft das Skript auf euren Server verwenden, solange dies nicht kommerziell geschied ! (Auch bearbeiten ist erlaubt, solange es nicht veröffentlicht wird!)
 Wenn ihr interesse hab das Skript weiter zu verbessern, dann könnt ihr gerne helfen :)
 
 Dies ist eine in der Entwicklung stehende Version also können noch Fehler enthalten sein.
