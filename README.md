@@ -32,4 +32,4 @@ Dies ist eine in der Entwicklung stehende Version also können noch Fehler entha
 
 
 
-Copyright © 2017 MCPC10
+Copyright © 2017 MCPC10 / Mike Cr.
