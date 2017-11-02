@@ -3,33 +3,9 @@ Dies ist ein Skript welches möglich macht, Altis Life Server über #shutdown / 
 
 Bitte Fehler im Skript Melden !
 
-Ihr dürft das Skript auf euren Server verwenden, solange dies nicht kommerziell geschied ! (Auch bearbeiten ist erlaubt, solange es nicht veröffentlicht wird!)
+Ihr dürft das Skript auf euren Server verwenden, wie es die MIT-Lizenz zuläß ;).
 Wenn ihr interesse hab das Skript weiter zu verbessern, dann könnt ihr gerne helfen :)
 
 Dies ist eine in der Entwicklung stehende Version also können noch Fehler enthalten sein.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Copyright © 2017 MCPC10 / Mike Cr.
