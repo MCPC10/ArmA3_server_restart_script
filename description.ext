@@ -1,1 +1,9 @@
-#include "Config_Restart.hpp"
+class CfgSettings 
+{
+    #include "MCRS_Config.hpp"
+};
+
+class CfgFunctions
+{
+    #include "MCRS_Functions.hpp"
+};
