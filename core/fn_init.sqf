@@ -9,30 +9,34 @@
 //If the caller is not the server, exit here
 if (!isServer) exitWith {};
 
-
-private["_restartTimeInterval","_restartTime","_sleepInterval","_uptime","_msgTimeInterval","_useMSG", "_password"];
-firstCycle = 1; //Set first cycle
+private["_restartTimeInterval","_restartTime","_sleepInterval","_msgTimeInterval", "_useMSG", "_password", "_useShutdown", "_startTime", "_timeUntilRestart", "_timeSinceStart"];
 
 _restartTimeInterval = ["CfgSettings","RestartSystem","restartInterval"] call BIS_fnc_getCfgData;
 _sleepInterval = ["CfgSettings","RestartSystem","checkInterval"] call BIS_fnc_getCfgData;
 _msgTimeInterval = ["CfgSettings","RestartSystem","warnMsgInterval"] call BIS_fnc_getCfgData;
 _useMSG = ["CfgSettings","RestartSystem","useWarnMsg"] call BIS_fnc_getCfgData;
 _password = ["CfgSettings","RestartSystem","serverCommandPassword"] call BIS_fnc_getCfgData;
+_useShutdown = ["CfgSettings","RestartSystem","useShutdownCommand"] call BIS_fnc_getCfgData;
+_msg = ["CfgSettings","RestartSystem","warnMessage"] call BIS_fnc_getCfgData;
 
-//Calculate the hours + minute value in only a minute value
-_restartTime = (((_restartTimeInterval select 0) * 60) + (_restartTimeInterval select 1));
+//Calculate the hours + minute value in only a second value
+_restartTime = (((_restartTimeInterval select 0) * 60) + (_restartTimeInterval select 1)) * 60;
 
-//Hardcodet minimum value of _restartTimeInterval
+//Get start time
+_startTime = diag_tickTime;
+
+//Limit the value of _restartTimeInterval
 if((_restartTimeInterval select 1) < HARDCODET_MINIMUM) then
 {
   _restartTimeInterval set [1, HARDCODET_MINIMUM];
 };
 
+//Remove unvalid msg values
 if(_useMSG isEqualTo 1) then
 {
   {
     //Check the message time intervals
-    if(_x > _restartTime OR _x == 0) then
+    if(_x > _restartTime OR _x == 0 OR isNil "_msg" OR "_msg" == "") then
     {
       _msgTimeInterval deleteAt _forEachIndex;
     };
@@ -45,24 +49,27 @@ if(_useMSG isEqualTo 1) then
 ///////////////////////////////////////////////////////////////////////////
 while {true} do {
 
-_uptime = [] call MCRS_fnc_getUptime;
+_timeSinceStart = diag_tickTime - _startTime;
+_timeUntilRestart = _restartTime - _timeSinceStart;
 
 //Message System
 if(_useMSG isEqualTo 1) then
 {
   {
-    if(((_restartTime - _uptime) <= _x) AND ((_restartTime - _uptime) > _msgTimeInterval select (_forEachIndex +1))) then
+    if((_timeUntilRestart <= _x) AND (_timeUntilRestart > _msgTimeInterval select (_forEachIndex +1))) then
     {
-      [_x] call MCRS_fnc_showMessage;
+      //Show the message
+      _message = format [_msg, _timeUntilRestart];
+      _message remoteExec ["hint"];
       _msgTimeInterval deleteAt _forEachIndex;
     };   
   } forEach _msgTimeInterval;
 };
 
 //Check if _uptime is higher than _restartTime
-if(_uptime >= _restartTime) then
+if(_timeSinceStart >= _restartTime) then
 {
-    if(["CfgSettings","RestartSystem","useShutdownCommand"] call BIS_fnc_getCfgData isEqualTo 1) then 
+    if(_useShutdown isEqualTo 1) then 
     {
       //Shutdown the server, so that FireDaemon, etc can restart the whole server
       _password serverCommand "#shutdown"
@@ -76,6 +83,5 @@ if(_uptime >= _restartTime) then
 
 //Wait for x seconds
 uiSleep _sleepInterval;
-firstCycle = 0; //Reset first cycle
 };
 
