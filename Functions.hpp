@@ -1,12 +1,11 @@
-class Arma_Restart_System
+class MCRS
 {
     tag = "MCRS";
-    class Auto_Restart
+    class MCRS_Core_Functions
     {
-        file = "core\restart";
-		class init {}; 
-		class getUptime {};
-                class sendCommand {};
-		class showMessage {};
+        file = "core";
+        class init {};
+        class getUptime {};
+        class showMessage {};
     };
 };

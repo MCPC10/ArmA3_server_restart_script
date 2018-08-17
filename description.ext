@@ -1,1 +1,6 @@
 #include "Config_Restart.hpp"
+
+class CfgFunctions
+{
+    #include "Functions.hpp"
+};

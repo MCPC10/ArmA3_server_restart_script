@@ -5,8 +5,8 @@ class CfgSettings
 {
     class RestartSystem
     {
-        // Empfohlen ist true, sonst kann es zu nicht berechenbaren Problemen führen !
-        useExtDB2 = true;
+        //
+        useArmaServerTimeCmd = true;
 
         // Hier muss das serverCommandPassword der config.cfg stehen !
         serverCommandPassword = "123";  
@@ -25,7 +25,7 @@ class CfgSettings
         //Schaltet die Restart Meldungen ein oder aus
         useWarnMsg = true;
         //Definiert die Minuten wann vor einem Neustart eine Meldung ausgegeben wird
-        warnMsgInterval[] = {2,1};  //Darf nicht größer als der restartInterval
+        warnMsgInterval[] = {10,5,2,1};  //Darf nicht größer als der restartInterval
         //Text der in der Meldung Steht (%1 = Minuten vor dem Neustart)
         warnMessage = "Der Server startet in %1 Minuten neu !";
     
