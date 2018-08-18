@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////
-//                Arma 3 Restart Skript (Altis Life)                     //
+//                  MCPC10's Arma 3 Restart Skript                       //
 //                       Copyright to MCPC10                             //
-//                        File: fn_init.sqf                              //
+//                        File: mcrs.sqf                              //
 ///////////////////////////////////////////////////////////////////////////
 
 #define HARDCODET_MINIMUM 300 // DO NOT CHANGE !!! (5 minutes)

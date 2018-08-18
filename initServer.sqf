@@ -1,4 +1,7 @@
-//If the caller is not the server, exit here
-if(!isServer) then exitWith{};
+if(!isServer) exitWith {};
 
-[] spawn MCRS_fnc_Init
+//If it's an dedicated server => start the restart script
+if(isDedicated) then
+{
+	_nul = [] execVM "mcrs.sqf";
+};
